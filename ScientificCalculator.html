@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Scientific Calculator</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+</head>
+
+<body class="bg-purple-50 min-h-screen">
+
+
+<!-- Main Calculator Box -->
+<div class="max-w-2xl mx-auto mt-10 p-6 border-2 border-purple-400 rounded-2xl shadow-xl bg-white">
+
+    <!-- Heading -->
+    <h1 class="text-center font-bold text-3xl mb-6 text-purple-800">
+        Scientific Calculator
+    </h1>
+
+    <!-- Display Box -->
+    <input
+        type="text"
+        id="display"
+        placeholder="Enter a number"
+        readonly
+        class="w-full border-2 border-purple-400 rounded-xl p-4 text-2xl text-right mb-5 bg-purple-50 text-purple-900"
+    >
+
+    <!-- Calculator Buttons -->
+    <div class="grid grid-cols-4 gap-3">
+
+        <!-- First Row -->
+        <button onclick="clearDisplay()"
+            class="border-2 border-rose-400 rounded-xl p-4 text-xl font-bold bg-rose-100 hover:bg-rose-200 text-rose-700">
+            C
+        </button>
+
+        <button onclick="deleteLast()"
+            class="border-2 border-pink-300 rounded-xl p-4 text-lg font-semibold bg-pink-50 hover:bg-pink-100 text-pink-800">
+            DEL
+        </button>
+
+        <button onclick="appendValue('(')"
+            class="border-2 border-purple-300 rounded-xl p-4 text-xl bg-purple-50 hover:bg-purple-100 text-purple-800">
+            (
+        </button>
+
+        <button onclick="appendValue(')')"
+            class="border-2 border-purple-300 rounded-xl p-4 text-xl bg-purple-50 hover:bg-purple-100 text-purple-800">
+            )
+        </button>
+
+        <!-- Second Row -->
+        <button onclick="appendValue('7')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            7
+        </button>
+
+        <button onclick="appendValue('8')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            8
+        </button>
+
+        <button onclick="appendValue('9')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            9
+        </button>
+
+        <button onclick="appendValue('/')"
+            class="border-2 border-fuchsia-300 rounded-xl p-4 text-xl font-bold bg-fuchsia-50 hover:bg-fuchsia-100 text-purple-800">
+            ÷
+        </button>
+
+        <!-- Third Row -->
+        <button onclick="appendValue('4')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            4
+        </button>
+
+        <button onclick="appendValue('5')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            5
+        </button>
+
+        <button onclick="appendValue('6')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            6
+        </button>
+
+        <button onclick="appendValue('*')"
+            class="border-2 border-fuchsia-300 rounded-xl p-4 text-xl font-bold bg-fuchsia-50 hover:bg-fuchsia-100 text-purple-800">
+            ×
+        </button>
+
+        <!-- Fourth Row -->
+        <button onclick="appendValue('1')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            1
+        </button>
+
+        <button onclick="appendValue('2')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            2
+        </button>
+
+        <button onclick="appendValue('3')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            3
+        </button>
+
+        <button onclick="appendValue('-')"
+            class="border-2 border-fuchsia-300 rounded-xl p-4 text-xl font-bold bg-fuchsia-50 hover:bg-fuchsia-100 text-purple-800">
+            −
+        </button>
+
+        <!-- Fifth Row -->
+        <button onclick="appendValue('0')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            0
+        </button>
+
+        <button onclick="appendValue('.')"
+            class="border-2 border-pink-200 rounded-xl p-4 text-xl bg-pink-50 hover:bg-pink-100 text-purple-900">
+            .
+        </button>
+
+        <button onclick="appendValue('+')"
+            class="border-2 border-fuchsia-300 rounded-xl p-4 text-xl font-bold bg-fuchsia-50 hover:bg-fuchsia-100 text-purple-800">
+            +
+        </button>
+
+        <button onclick="calculate()"
+            class="border-2 border-emerald-400 rounded-xl p-4 text-xl font-bold bg-emerald-100 hover:bg-emerald-200 text-emerald-800">
+            =
+        </button>
+
+        <!-- Scientific Functions -->
+        <button onclick="square()"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            x²
+        </button>
+
+        <button onclick="squareRoot()"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            √
+        </button>
+
+        <button onclick="appendValue('Math.PI')"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            π
+        </button>
+
+        <button onclick="appendValue('Math.E')"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            e
+        </button>
+
+        <!-- Trigonometric Functions -->
+        <button onclick="trigFunction('sin')"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            sin
+        </button>
+
+        <button onclick="trigFunction('cos')"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            cos
+        </button>
+
+        <button onclick="trigFunction('tan')"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            tan
+        </button>
+
+        <button onclick="logFunction('log')"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            log
+        </button>
+
+        <button onclick="logFunction('ln')"
+            class="border-2 border-purple-400 rounded-xl p-3 text-lg font-semibold bg-purple-100 hover:bg-purple-200 text-purple-900">
+            ln
+        </button>
+
+    </div>
+
+    <!-- Result Box -->
+    <h2 id="result"
+        class="text-center font-bold text-2xl mt-6 p-5 border-2 border-fuchsia-400 rounded-xl bg-fuchsia-50 text-purple-800 shadow-md">
+        Result:
+    </h2>
+
+</div>
+
+<!-- JavaScript -->
+<script>
+
+    // Display mein value add karna
+    function appendValue(value) {
+        document.getElementById("display").value += value;
+    }
+
+    // Display clear karna
+    function clearDisplay() {
+        document.getElementById("display").value = "";
+        document.getElementById("result").innerHTML = "Result:";
+    }
+
+    // Last character delete karna
+    function deleteLast() {
+        let display = document.getElementById("display");
+        display.value = display.value.slice(0, -1);
+    }
+
+    // Calculation
+    function calculate() {
+        let expression = document.getElementById("display").value;
+
+        try {
+            if (expression.trim() === "") {
+                document.getElementById("result").innerHTML =
+                    "Please enter a calculation";
+                return;
+            }
+
+            // Allow only calculator numbers and operators
+            if (!/^[0-9+\-*/().\s]*$/.test(expression)) {
+                throw new Error("Invalid input");
+            }
+
+            let answer = Function('"use strict"; return (' + expression + ')')();
+
+            if (!Number.isFinite(answer)) {
+                throw new Error("Invalid result");
+            }
+
+            document.getElementById("result").innerHTML =
+                "Result: " + answer;
+
+        } catch (error) {
+            document.getElementById("result").innerHTML =
+                "Invalid Calculation";
+        }
+    }
+
+    // Square
+    function square() {
+        let input = document.getElementById("display").value;
+
+        if (input.trim() === "") {
+            document.getElementById("result").innerHTML =
+                "Please enter a number";
+            return;
+        }
+
+        let value = Number(input);
+
+        document.getElementById("result").innerHTML =
+            "Result: " + (value * value);
+    }
+
+    // Square Root
+    function squareRoot() {
+        let input = document.getElementById("display").value;
+
+        if (input.trim() === "") {
+            document.getElementById("result").innerHTML =
+                "Please enter a number";
+            return;
+        }
+
+        let value = Number(input);
+
+        if (value < 0) {
+            document.getElementById("result").innerHTML =
+                "Cannot calculate square root of a negative number";
+            return;
+        }
+
+        document.getElementById("result").innerHTML =
+            "Result: " + Math.sqrt(value);
+    }
+
+    // Sin, Cos and Tan in degrees
+    function trigFunction(operation) {
+        let input = document.getElementById("display").value;
+
+        if (input.trim() === "") {
+            document.getElementById("result").innerHTML =
+                "Please enter an angle";
+            return;
+        }
+
+        let angle = Number(input);
+        let radians = angle * Math.PI / 180;
+        let answer;
+
+        if (operation === "sin") {
+            answer = Math.sin(radians);
+        } else if (operation === "cos") {
+            answer = Math.cos(radians);
+        } else if (operation === "tan") {
+            if (Math.abs(Math.cos(radians)) < 1e-10) {
+                document.getElementById("result").innerHTML =
+                    "Tan is undefined at this angle";
+                return;
+            }
+
+            answer = Math.tan(radians);
+        }
+
+        document.getElementById("result").innerHTML =
+            "Result: " + Number(answer.toFixed(8));
+    }
+
+    // Log and Natural Log
+    function logFunction(operation) {
+        let input = document.getElementById("display").value;
+
+        if (input.trim() === "") {
+            document.getElementById("result").innerHTML =
+                "Please enter a number";
+            return;
+        }
+
+        let number = Number(input);
+
+        if (number <= 0) {
+            document.getElementById("result").innerHTML =
+                "Enter a number greater than zero";
+            return;
+        }
+
+        let answer;
+
+        if (operation === "log") {
+            answer = Math.log10(number);
+        } else {
+            answer = Math.log(number);
+        }
+
+        document.getElementById("result").innerHTML =
+            "Result: " + answer;
+    }
+
+</script>
+
+
+</body>
+</html>
